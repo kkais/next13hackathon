@@ -25,7 +25,7 @@ interface IProduct {
   category: ICategory
 }
 
-const AllProducts = async () => {
+const KidsProducts = async () => {
   const data: IProduct[] = await getProductsData();
   // console.log(data);
 
@@ -42,4 +42,4 @@ const AllProducts = async () => {
   )
 }
 
-export default AllProducts
+export default KidsProducts
