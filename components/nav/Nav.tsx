@@ -36,7 +36,7 @@ const Nav = () => {
         <svg
           stroke="currentColor"
           fill="currentColor"
-          stroke-width="0"
+          strokeWidth="0"
           version="1.1"
           id="search"
           x="0px"
@@ -72,10 +72,10 @@ const Nav = () => {
         <svg
           stroke="currentColor"
           fill="currentColor"
-          stroke-width="0"
+          strokeWidth="0"
           viewBox="0 0 24 24"
           color="black"
-          font-size="27"
+          fontSize="27"
           style={{ color: "black" }}
           height="1em"
           width="1em"
@@ -102,10 +102,10 @@ const Nav = () => {
           <svg
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 24 24"
             color="black"
-            font-size="27"
+            fontSize="27"
             className="close_icon"
             height="1em"
             width="1em"
@@ -123,15 +123,15 @@ const Nav = () => {
                 <svg
                   stroke="currentColor"
                   fill="none"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 24 24"
                   height="22"
                   width="22"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M5.79166 2H1V4H4.2184L6.9872 16.6776H7V17H20V16.7519L22.1932 7.09095L22.5308 6H6.6552L6.08485 3.38852L5.79166 2ZM19.9869 8H7.092L8.62081 15H18.3978L19.9869 8Z"
                     fill="currentColor"
                   ></path>

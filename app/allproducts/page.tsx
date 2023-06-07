@@ -1,8 +1,36 @@
-import React from 'react'
+import { client } from "@/lib/sanity/sanityClient";
+import Product from "@/components/product/Product";
 
-const AllProducts = () => {
+const getProductsData = async () => {
+  return await client.fetch(`*[_type=='product']`);
+}
+
+interface ICategory {
+  title: string
+}
+interface IProduct {
+  _id: string,
+  title: string,
+  description: string,
+  price: number,
+  images: string[],
+  category: ICategory
+}
+
+const AllProducts = async () => {
+  const data: IProduct[] = await getProductsData();
+  // console.log(data);
+
   return (
-    <div>AllProducts</div>
+    <div className="grid grid-cols-[repeat(3,auto)] justify-center gap-10">
+      {data.map((item: IProduct) =>
+        (
+          <div key={item._id}>
+            <Product item={item} />
+          </div>
+        )
+      )}
+    </div>
   )
 }
 
