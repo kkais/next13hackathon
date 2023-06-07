@@ -20,16 +20,16 @@ const Nav = () => {
       </Link>
       <ul className="justify-between hidden gap-8 xl:gap-12 font lg:flex">
         <li>
-          <Link href="#">Female</Link>
+          <Link href="/female">Female</Link>
         </li>
         <li>
-          <Link href="#">Male</Link>
+          <Link href="/male">Male</Link>
         </li>
         <li>
-          <Link href="#">Kids</Link>
+          <Link href="/kids">Kids</Link>
         </li>
         <li>
-          <Link href="#">All Products</Link>
+          <Link href="/allproducts">All Products</Link>
         </li>
       </ul>
       <div className="hidden w-[30%] items-center rounded-[5px] border border-[#e4e5eb] px-[5px] lg:flex">
@@ -61,13 +61,12 @@ const Nav = () => {
           className="h-6 w-full border-0 p-[5px] text-xs"
         />
       </div>
-      <Button className="relative hidden h-auto rounded-full border-0 bg-[#f1f1f1] p-3 text-black transition duration-300 delay-0 ease-linear hover:scale-110 hover:transform lg:flex">
-        <ShoppingCart className="font-bold" />
-        <span className=" absolute right-[5px] top-0 h-[18px] w-[18px] rounded-full bg-[#f02d34] text-center text-xs font-semibold text-[#eee]">
-          0
-        </span>
-        <span></span>
-      </Button>
+      <Link href="/cart">
+        <Button className="relative hidden h-auto rounded-full border-0 bg-[#f1f1f1] p-3 text-black transition duration-300 delay-0 ease-linear hover:scale-110 hover:transform lg:flex">
+          <ShoppingCart className="font-bold" />
+          <span className=" absolute right-[5px] top-0 h-[18px] w-[18px] rounded-full bg-[#f02d34] text-center text-xs font-semibold text-[#eee]">0</span>
+        </Button>
+      </Link>
       <div className="lg:hidden navbar-smallscreen">
         <svg
           stroke="currentColor"
@@ -118,7 +117,7 @@ const Nav = () => {
             </g>
           </svg>
           <ul className="navbar-smallscreen_links">
-            <a href="/cart">
+            <Link href="/cart">
               <button className="cart-small-screen">
                 <svg
                   stroke="currentColor"
@@ -146,19 +145,19 @@ const Nav = () => {
                 </svg>
                 <span className="cart-item-qty">0</span>
               </button>
-            </a>
-            <a href="/female">
+            </Link>
+            <Link href="/female">
               <li>Female</li>
-            </a>
-            <a href="/male">
+            </Link>
+            <Link href="/male">
               <li>Male</li>
-            </a>
-            <a href="/kids">
+            </Link>
+            <Link href="/kids">
               <li>Kids</li>
-            </a>
-            <a href="/products">
+            </Link>
+            <Link href="/allproducts">
               <li>All Products</li>
-            </a>
+            </Link>
           </ul>
         </div>
       </div>
