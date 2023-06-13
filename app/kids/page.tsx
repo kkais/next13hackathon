@@ -1,40 +1,33 @@
 import { client } from "@/lib/sanity/sanityClient";
-import Product from "@/components/product/Product";
+import ProductCard from "@/components/productcard/ProductCard";
+import IProduct from "@/interfaces/IProduct";
 
 const getProductsData = async () => {
   return await client.fetch(`*[_type=='product' && category->title=='Kids']{
     _id,
     title,
+    slug,
     description,
+    care,
     price,
     images,
-    category->{title}
+    category->{title},
+    tag->{title},
+    sizes[]->{title},
     }`
   );
 }
 
-interface ICategory {
-  title: string
-}
-interface IProduct {
-  _id: string,
-  title: string,
-  description: string,
-  price: number,
-  images: string[],
-  category: ICategory
-}
-
 const KidsProducts = async () => {
-  const data: IProduct[] = await getProductsData();
-  // console.log(data);
+  const products: IProduct[] = await getProductsData();
+  // console.log(products);
 
   return (
     <div className="grid grid-cols-[repeat(3,auto)] justify-center gap-10">
-      {data.map((item: IProduct) =>
+      {products.map((product: IProduct) =>
         (
-          <div key={item._id}>
-            <Product item={item} />
+          <div key={product._id}>
+            <ProductCard product={product} />
           </div>
         )
       )}

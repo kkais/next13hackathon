@@ -11,9 +11,19 @@ export const product = {
       type: 'string',
     },
     {
+      name: 'slug',
+      title: 'Product Slug',
+      type: 'string',
+    },
+    {
       name: 'description',
       title: 'Product Description',
-      type: 'string',
+      type: 'text',
+    },
+    {
+      name: 'care',
+      title: 'Product Care',
+      type: 'text',
     },
     {
       name: 'price',
@@ -31,6 +41,23 @@ export const product = {
       title: 'Product Category',
       type: 'reference',
       to: [{ type: 'category' }],
+    },
+    {
+      name: 'tag',
+      title: 'Product Tag',
+      type: 'reference',
+      to: [{ type: 'tag' }],
+    },
+    {
+      name: 'sizes',
+      title: 'Product Sizes',
+      type: 'array',
+      of: [{
+        name: 'size',
+        title: 'Product Size',
+        type: 'reference',
+        to: [{ type: 'size' }],
+      }],
     },
   ],
 }
