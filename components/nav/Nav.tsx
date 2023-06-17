@@ -6,6 +6,7 @@ import logo from "../../public/Logo.webp"
 import { Button } from "../ui/button"
 
 const Nav = () => {
+
   return (
     <nav className="flex items-center justify-between mx-32 my-8 lg:mx16">
       <Link href="/">
@@ -18,7 +19,7 @@ const Nav = () => {
           style={{ color: "transparent" }}
         />
       </Link>
-      <ul className="justify-between hidden gap-8 xl:gap-12 font lg:flex">
+      <ul className="justify-between hidden gap-8 lg:flex xl:gap-12">
         <li>
           <Link href="/female">Female</Link>
         </li>
