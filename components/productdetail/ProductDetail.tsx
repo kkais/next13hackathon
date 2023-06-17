@@ -1,6 +1,6 @@
 "use client"
 
-import { FC } from "react"
+import { FC, useState } from "react"
 import Image from "next/image"
 import IProduct from "@/interfaces/IProduct"
 import ISize from "@/interfaces/ISize"
@@ -8,8 +8,21 @@ import { urlForImage } from "@/sanity/lib/image"
 import toast, { Toaster } from "react-hot-toast"
 
 const ProductDetail: FC<{ product: IProduct }> = ({ product }) => {
+  // const [loading, setLoading] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
   const prod: IProduct = product[0]
   // console.log(prod.title);
+
+  const onQuantityPlus = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const onQuantityMinus = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   const handleAddToCart = async () => {
     try {
@@ -19,7 +32,7 @@ const ProductDetail: FC<{ product: IProduct }> = ({ product }) => {
           product_id: prod._id,
         }),
       })
-      toast.success(`${prod.title} been successfully added!`, {
+      toast.success(`${quantity} ${prod.title} added to the cart!`, {
         position: "top-right",
       })
       const result = await response.json()
@@ -90,8 +103,10 @@ const ProductDetail: FC<{ product: IProduct }> = ({ product }) => {
           </div>
           <div className="flex gap-8">
             <h4 className="font-bold">Quantity: </h4>
-            <div className="flex">
-              <span className="mr-[10px] cursor-pointer rounded-full border-2 border-solid border-[#f1f1f1] bg-[#f1f1f1] px-2 pb-2 pt-[0.3rem]">
+            <div className="flex items-center">
+              <span
+                onClick={onQuantityMinus}
+                className="mr-[10px] cursor-pointer rounded-full border-2 border-solid border-[#f1f1f1] bg-[#f1f1f1] px-[5px] pb-[6px] pt-[3px]">
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
@@ -104,8 +119,10 @@ const ProductDetail: FC<{ product: IProduct }> = ({ product }) => {
                   <path d="M872 474H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h720c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"></path>
                 </svg>
               </span>
-              <span className="num">1</span>
-              <span className="ml-[10px] cursor-pointer rounded-full border-2 border-solid  border-[#000] px-2 pb-2 pt-[0.3rem]">
+              <span className="num">{quantity}</span>
+              <span
+                onClick={onQuantityPlus}
+                className="ml-[10px] cursor-pointer rounded-full border-2 border-solid  border-[#000] px-[5px] pb-[6px] pt-[3px]">
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
