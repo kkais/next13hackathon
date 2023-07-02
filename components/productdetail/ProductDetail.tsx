@@ -26,17 +26,16 @@ const ProductDetail: FC<{ product: IProduct }> = ({ product }) => {
 
   const handleAddToCart = async () => {
     try {
-      const response = await fetch("api/cart", {
+      const response = await fetch("/api/cart", {
         method: "POST",
         body: JSON.stringify({
           product_id: prod._id,
+          quantity
         }),
       })
-      toast.success(`${quantity} ${prod.title} added to the cart!`, {
-        position: "top-right",
-      })
+      toast.success(`${quantity} ${prod.title} added to the cart!`)
       const result = await response.json()
-      console.log(result)
+      // console.log(result)
     } catch (error) {
       toast.error("Oops! Something went wrong")
       console.log(error)
@@ -44,9 +43,10 @@ const ProductDetail: FC<{ product: IProduct }> = ({ product }) => {
   }
 
   return (
-    <div className="bg-[#fcfcfc] px-32 py-16">
+    <>
       <Toaster />
-      <div className="flex justify-between">
+    <div className="bg-[#fcfcfc] px-8 lg:px-32 py-16">
+      <div className="flex flex-col lg:flex-row justify-between">
         <div className="flex shrink grow-[2] basis-0 gap-8">
           <div className="flex flex-col gap-4">
             {prod.images.map((img: any, index) => {
@@ -177,16 +177,16 @@ const ProductDetail: FC<{ product: IProduct }> = ({ product }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-8 px-16 pt-8 pb-24 bg-white">
+      <div className="flex flex-col gap-8 px-8 lg:px-16 pt-8 pb-24 bg-white">
         <div className="relative z-[2] flex h-[150px] w-full border-b-2 border-b-[#c4c4c4]">
-          <div className="z-[2] flex h-full w-full text-[7.5rem] font-extrabold leading-[151px] text-[#f2f3f7] opacity-[0.7]">
+          <div className="z-[2] flex h-full w-full text-[3rem] lg:text-[7.5rem] font-extrabold leading-[151px] text-[#f2f3f7] opacity-[0.7]">
             Overview
           </div>
           <h2 className="absolute top-[45%] z-[2] pb-12 text-[1.4rem] font-bold leading-6 text-[#212121]">
             Product Information
           </h2>
         </div>
-        <div className="z-[2] flex">
+        <div className="z-[2] flex flex-col lg:flex-row">
           <h4 className="flex shrink grow basis-0 text-base font-bold leading-5 tracking-wider text-[#666]">
             PRODUCT DETAILS
           </h4>
@@ -194,7 +194,7 @@ const ProductDetail: FC<{ product: IProduct }> = ({ product }) => {
             {prod.description}
           </p>
         </div>
-        <div className="z-[2] flex">
+        <div className="z-[2] flex flex-col lg:flex-row">
           <h4 className="flex shrink grow basis-0 text-base font-bold leading-5 tracking-wider text-[#666]">
             PRODUCT CARE
           </h4>
@@ -212,6 +212,7 @@ const ProductDetail: FC<{ product: IProduct }> = ({ product }) => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

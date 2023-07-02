@@ -4,16 +4,34 @@ import { ShoppingCart } from "lucide-react"
 
 import logo from "../../public/Logo.webp"
 import { Button } from "../ui/button"
+import { cookies } from "next/headers"
 
-const Nav = () => {
+const getCartItems =async () => {
+  const cookieStore = cookies();
+  const user_id = cookieStore.get("user_id")?.value as string;
+
+  try {
+    const response = await fetch(`http://localhost:3000/api/cart?user_id=${user_id}`);
+    const result = await response.json();
+    return result;
+    // console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+  
+}
+
+const Nav = async () => {
+
+  const cartItems = await getCartItems();
 
   return (
-    <nav className="flex items-center justify-between mx-32 my-8 lg:mx16">
+    <nav className="flex items-center w-full lg:w-4/5 justify-between mx-8 xl:mx-32 my-8 lg:mx-16">
       <Link href="/">
         <Image
           alt="logo"
-          width={140}
-          height={25}
+          width="140"
+          height="25"
           src={logo}
           loading="lazy"
           style={{ color: "transparent" }}
@@ -65,7 +83,7 @@ const Nav = () => {
       <Link href="/cart">
         <Button className="relative hidden h-auto rounded-full border-0 bg-[#f1f1f1] p-3 text-black transition duration-300 delay-0 ease-linear hover:scale-110 hover:transform lg:flex">
           <ShoppingCart className="font-bold" />
-          <span className=" absolute right-[5px] top-0 h-[18px] w-[18px] rounded-full bg-[#f02d34] text-center text-xs font-semibold text-[#eee]">0</span>
+          <span className=" absolute right-[5px] top-0 h-[18px] w-[18px] rounded-full bg-[#f02d34] text-center text-xs font-semibold text-[#eee]">{cartItems?.length || 0}</span>
         </Button>
       </Link>
       <div className="lg:hidden navbar-smallscreen">
@@ -144,7 +162,7 @@ const Nav = () => {
                     fill="currentColor"
                   ></path>
                 </svg>
-                <span className="cart-item-qty">0</span>
+                <span className="cart-item-qty">{cartItems?.length || 0}</span>
               </button>
             </Link>
             <Link href="/female">
