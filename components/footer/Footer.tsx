@@ -5,8 +5,8 @@ import logo from "../../public/Logo.webp"
 const Footer = () => {
   return (
     <>
-      <div className="grid grid-cols-5 px-32 py-16">
-        <div className="col-span-2 flex w-[80%] flex-col justify-between">
+      <div className="grid grid-cols-1 lg:grid-cols-5 px-8 lg:px-32 py-16 gap-8">
+        <div className="lg:col-span-2 flex lg:w-[80%] flex-col justify-between gap-8">
           <Image
             alt="logo"
             src={logo}
@@ -98,12 +98,12 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="mt-24 grid grid-cols-3 border-t-[1px] border-[#666]">
-        <p className="mx-32 my-6 text-base font-normal text-[#666]">Copyright © 2023 Churail Market</p>
-        <p className="mx-32 my-6 text-base font-normal text-[#666]">
+      <div className="mt:16 lg:mt-24 grid grid-cols-1 lg:grid-cols-3 border-t-[1px] border-[#666]">
+        <p className="mx-8 lg:mx-32 my-3 lg:my-6 text-base font-normal text-[#666]">Copyright © 2023 Churail Market</p>
+        <p className="mx-8 lg:mx-32 my-3 lg:my-6 text-base font-normal text-[#666]">
           Design by. <span className="text-base font-bold leading-4 text-[#212121]">PIAIC Studio</span>
         </p>
-        <p className="mx-32 my-6 text-base font-normal text-[#666]">
+        <p className="mx-8 lg:mx-32 my-3 lg:my-6 text-base font-normal text-[#666]">
           Code by. <span className="text-base font-bold leading-4 text-[#212121]">kkais on github</span>
         </p>
       </div>
