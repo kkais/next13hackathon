@@ -13,11 +13,11 @@ const getCartItems =async () => {
   const cookieStore = cookies();
   const user_id = cookieStore.get("user_id")?.value as string;
   const url = `${host}/api/cart?user_id=${user_id}`; 
+  let orderItems: IOrderItem[] = [];
     
   try {
     const response = await fetch(url);
     const result = await response.json();
-    let orderItems: IOrderItem[] = [];
     //console.log("cartItems:", result);
 
     for (let index = 0; index < result.length; index++) {
@@ -54,14 +54,12 @@ const getCartItems =async () => {
       orderItems.push(orderItem)
     }
     
-    // console.log("orderItems", orderItems);
-    
-    return orderItems;
-
   } catch (error) {
     console.log(error);
-
   }
+  
+  // console.log("orderItems", orderItems);  
+  return orderItems;
   
 }
 
