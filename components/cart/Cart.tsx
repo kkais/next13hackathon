@@ -6,6 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import IOrderItem from "@/interfaces/IOrderItem";
 
 import { Button } from "../ui/button"
+import { Image as SanityImage } from "sanity";
 import { urlForImage } from "@/sanity/lib/image";
 
 // const sortArray = (arr: any[]) => {
@@ -23,11 +24,12 @@ const Cart: FC<{products: IOrderItem[]}> = ({products}) => {
   const changeQuantity = (itemId: string, value: number) => {
     // Don't allow the quantity less than 0, if the quantity is greater than value entered by user then the user entered quantity is used, else 0
     // setItems({ ...items, quantity: Math.max(0, value) });
+    let img: SanityImage =  {};
     let obj: IOrderItem = {
       id: "",
       name: "",
       description: "",
-      image: "",
+      image: img,
       category: "",
       tag: "",
       quantity: 0,
