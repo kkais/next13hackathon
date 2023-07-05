@@ -23,7 +23,7 @@ const getCartItems =async () => {
     for (let index = 0; index < result.length; index++) {
       let orderItem: IOrderItem;
       
-      let product: IProduct = await client.fetch(`*[_type=='product' && _id=='${result[index].product_id}']{
+      let products: IProduct[] = await client.fetch(`*[_type=='product' && _id=='${result[index].product_id}']{
         _id,
         title,
         slug,
@@ -38,7 +38,7 @@ const getCartItems =async () => {
       );
       
       // console.log("product:", product);
-      product = product[0];
+      const product: IProduct = products['0'];
   
       orderItem = { 
         id: product._id,
