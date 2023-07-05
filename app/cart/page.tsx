@@ -5,9 +5,14 @@ import { client } from "@/lib/sanity/sanityClient";
 import { cookies } from "next/headers";
 
 const getCartItems =async () => {
+  const host =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : process.env.VERCEL_URL;
+
   const cookieStore = cookies();
   const user_id = cookieStore.get("user_id")?.value as string;
-  const url = `http://localhost:3000/api/cart?user_id=${user_id}`; 
+  const url = `${host}/api/cart?user_id=${user_id}`; 
     
   try {
     const response = await fetch(url);

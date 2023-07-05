@@ -27,7 +27,7 @@ export async function POST(req: Request) {
   const redirectURL =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
-      : 'your deployed url';
+      : process.env.VERCEL_URL;
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
