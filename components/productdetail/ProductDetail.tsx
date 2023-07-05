@@ -7,11 +7,11 @@ import ISize from "@/interfaces/ISize"
 import { urlForImage } from "@/sanity/lib/image"
 import toast, { Toaster } from "react-hot-toast"
 
-const ProductDetail: FC<{ product: IProduct }> = ({ product }) => {
+const ProductDetail: FC<{ products: IProduct[] }> = ({ products }) => {
   // const [loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
-  const prod: IProduct = product[0]
+  const prod: IProduct = products[0]
   // console.log(prod.title);
 
   const onQuantityPlus = () => {
