@@ -21,7 +21,7 @@ export  async function POST(req: any, res: any){
 
         console.log( 'payment success-----------------------', session );
 
-        const line_Items  = await stripe.checkout.sessions.listLineItems(event.data.object!.id);
+        // const line_Items  = await stripe.checkout.sessions.listLineItems(event.data.object!.id);
     //console.log("Line Items==========================",line_Items);
 
 
