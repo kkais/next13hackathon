@@ -2,13 +2,14 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState } from "react"
+import { FC, useState } from "react"
 
 import { Button } from "../ui/button"
 import { ShoppingCart } from "lucide-react"
 import logo from "../../public/Logo.webp"
+import IOrderItem from "@/interfaces/IOrderItem"
 
-const MainNav = ({ cartItems }) => {
+const MainNav: FC<{cartItems: IOrderItem[]}> = ({ cartItems }) => {
     const [open, setOpen] = useState(false);
     return (
         <nav className="flex items-center w-full lg:w-auto justify-between mx-8 xl:mx-32 my-8 lg:mx-16">

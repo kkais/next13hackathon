@@ -5,7 +5,6 @@ import { ShoppingCart } from "lucide-react"
 import logo from "../../public/Logo.webp"
 import { Button } from "../ui/button"
 import { cookies } from "next/headers"
-import SmallScreenNav from "./SmallScreenNav"
 import MainNav from "./MainNav"
 
 const getCartItems = async () => {

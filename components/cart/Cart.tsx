@@ -8,22 +8,32 @@ import IOrderItem from "@/interfaces/IOrderItem";
 import { Button } from "../ui/button"
 import { urlForImage } from "@/sanity/lib/image";
 
-const sortArray = (arr: any[]) => {
-  arr.sort((a, b)=>{
-    a.price - b.price
-  })
-}
+// const sortArray = (arr: any[]) => {
+//   arr.sort((a, b)=>{
+//     a.price - b.price
+//   })
+// }
 
 const Cart: FC<{products: IOrderItem[]}> = ({products}) => {
   const [loading, setLoading] = useState(false);
-  sortArray(products);
+  // sortArray(products);
   const [items, setItems] = useState(products);
   let total = 0;
 
   const changeQuantity = (itemId: string, value: number) => {
     // Don't allow the quantity less than 0, if the quantity is greater than value entered by user then the user entered quantity is used, else 0
     // setItems({ ...items, quantity: Math.max(0, value) });
-    let obj;
+    let obj: IOrderItem = {
+      id: "",
+      name: "",
+      description: "",
+      image: "",
+      category: "",
+      tag: "",
+      quantity: 0,
+      price: 0
+    };
+
     let arr = items.filter(item => {
       if(item.id == itemId) { 
         // if (value < 0 && item.quantity > 0) { // Decrease only when there's a quantity value greater than zero
@@ -36,7 +46,7 @@ const Cart: FC<{products: IOrderItem[]}> = ({products}) => {
       }
     })
     arr = [obj, ...arr];
-    sortArray(arr);
+    // sortArray(arr);
     setItems(arr);
   };
 
@@ -48,9 +58,9 @@ const Cart: FC<{products: IOrderItem[]}> = ({products}) => {
       changeQuantity(itemId, -1);
   };
 
-  const onInputChange = (e: { target: { value: string } }) => {
-    changeQuantity(parseInt(e.target.value));
-  };
+  // const onInputChange = (e: { target: { value: string } }) => {
+  //   changeQuantity(parseInt(e.target.value));
+  // };
 
   items.map(item => {
     let item_total =  item.price * item.quantity
@@ -160,7 +170,7 @@ const Cart: FC<{products: IOrderItem[]}> = ({products}) => {
                           placeholder=""
                           type="number"
                           className="w-12 p-2"
-                          onChange={onInputChange}
+                          // onChange={onInputChange}
                           value={product.quantity}
                           disabled
                         />
