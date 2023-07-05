@@ -21,8 +21,7 @@ const getCartItems = async () => {
 
 }
 
-const Nav = async (request: Request) => {
-  const host = request.headers.host
+const Nav = async () => {
   const cartItems = await getCartItems();
 
   return (
