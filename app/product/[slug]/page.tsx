@@ -31,11 +31,11 @@ const getProductData = async (slug:string) => {
 
 const Product = async ({ params }: { params: { slug: string } }) => {
   const {slug} = params;
-  const product: IProduct = await getProductData(slug);
+  const products: IProduct[] = await getProductData(slug);
   // console.log(product);
 
   return (
-    <ProductDetail product={product} />
+    <ProductDetail products={products} />
   )
 }
 
