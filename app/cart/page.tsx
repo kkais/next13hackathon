@@ -66,7 +66,7 @@ const getCartItems =async () => {
 }
 
 const MyCart = async () => {
-  const cartItems: IOrderItem = await getCartItems();
+  const cartItems: IOrderItem[] = await getCartItems();
   return (
     <Cart products={cartItems} />
   )
