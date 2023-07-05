@@ -2,6 +2,7 @@ import { db, cartTable } from "@/lib/drizzle/drizzle"
 import { v4 as uuidv4 } from 'uuid';
 import { cookies } from 'next/headers';
 import { and, eq, sql } from "drizzle-orm";
+import ICartItem from "@/interfaces/ICartItem";
 
 export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
@@ -31,7 +32,7 @@ export const POST = async (request: Request) => {
   const uid = uuidv4();
   const cookieStore = cookies();
   const user_id = cookieStore.get("user_id");
-  let result, cartItem;
+  let result, cartItem: ICartItem[] = [];
 
   if(!user_id) {
     cookieStore.set("user_id", uid);
@@ -55,7 +56,7 @@ export const POST = async (request: Request) => {
     }
     
     if (cartItem?.length) {
-      const qty = parseInt(cartItem[0].quantity) + requestData.quantity
+      const qty = cartItem[0].quantity + requestData.quantity
     
       result = await db.update(cartTable).set({
         quantity: qty,
