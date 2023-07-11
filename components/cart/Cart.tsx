@@ -76,8 +76,10 @@ const Cart: FC<{products: IOrderItem[]}> = ({products}) => {
     setLoading(true);
     const stripe = await stripePromise;
 
+    const host = window.location.protocol + "://" + window.location.host;
+
     const checkoutSession = await fetch(
-      "/api/stripe/create-stripe-session",
+      `${host}/api/stripe/create-stripe-session`,
       {
         method: "POST",
         headers: {
