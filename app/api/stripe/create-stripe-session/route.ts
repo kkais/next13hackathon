@@ -7,8 +7,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 
 
 export async function POST(req: Request) {
-  const { item } = await req.json();
-
+  const { items } = await req.json();
+  const item = items[0];
   const transformedItem = {
     price_data: {
       currency: 'usd',
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
   const protocol = headersData.get("x-forwarded-proto");
   const host = headersData.get("host");
   const live_url = `${protocol}://${host}`
-  
+
   const redirectURL =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
     cancel_url: redirectURL + '/payment/fail',
     metadata: {
       images: item.image,
-      name: "some additional info",
+      name: item.name,
       task: "Khurram created a task"
     },
   });
