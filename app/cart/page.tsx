@@ -1,19 +1,23 @@
+import { cookies, headers} from "next/headers";
 import Cart from "@/components/cart/Cart"
 import IOrderItem from "@/interfaces/IOrderItem";
 import IProduct from "@/interfaces/IProduct";
 import { client } from "@/lib/sanity/sanityClient";
-import { live_url } from "@/utils";
-import { cookies} from "next/headers";
 
 const getCartItems =async () => {
-  const host =  
+  const headersData = headers();  
+  const protocol = headersData.get("x-forwarded-proto");
+  const host = headersData.get("host");
+  const live_url = `${protocol}://${host}`;
+
+  const apiHost =  
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
       : live_url;
 
   const cookieStore = cookies();
   const user_id = cookieStore.get("user_id")?.value as string;
-  const url = `${host}/api/cart?user_id=${user_id}`; 
+  const url = `${apiHost}/api/cart?user_id=${user_id}`; 
   let orderItems: IOrderItem[] = [];
     
   try {
