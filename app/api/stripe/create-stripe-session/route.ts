@@ -1,4 +1,4 @@
-import { headers } from "next/headers";
+import { live_url } from "@/utils";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -26,11 +26,6 @@ export async function POST(req: Request) {
 
   };
   
-  const headersData = headers();
-  const protocol = headersData.get("x-forwarded-proto");
-  const host = headersData.get("host");
-  const live_url = `${protocol}://${host}`
-
   const redirectURL =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
