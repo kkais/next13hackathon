@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -24,10 +25,16 @@ export async function POST(req: Request) {
     quantity: item.quantity,
 
   };
+  
+  const headersData = headers();
+  const protocol = headersData.get("x-forwarded-proto");
+  const host = headersData.get("host");
+  const live_url = `${protocol}://${host}`
+  
   const redirectURL =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
-      : process.env.VERCEL_URL;
+      : live_url;
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
