@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       product_data: {
         name: item.name,
         description: item.description,
-        images: [item.image],
+        // images: [item.image],
         metadata: {},
 
       },
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     success_url: redirectURL + '/payment/success',
     cancel_url: redirectURL + '/payment/fail',
     metadata: {
-      images: item.image,
+      // images: item.image,
       name: item.name,
       task: "Khurram created a task"
     },
